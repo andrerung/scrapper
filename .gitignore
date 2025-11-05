@@ -9,6 +9,7 @@ yarn.lock
 # Authentication files (IMPORTANT - keep these secret!)
 cookies.json
 storage.json
+.browser-profile/
 
 # Output directory
 output/

@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+
+# Authentication files (IMPORTANT - keep these secret!)
+cookies.json
+storage.json
+
+# Output directory
+output/
+dist/
+
+# Logs
+*.log
+logs/
+scraper.log
+scraper-error.log
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE / Editor
+.vscode/
+.idea/
+*.iml
+.sublime-project
+.sublime-workspace
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Playwright cache
+.playwright/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

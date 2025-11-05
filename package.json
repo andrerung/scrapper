@@ -1,0 +1,40 @@
+{
+  "name": "revision-village-scraper",
+  "version": "1.0.0",
+  "description": "Production-ready authenticated website scraper for offline browsing",
+  "type": "module",
+  "main": "scrape.js",
+  "scripts": {
+    "auth": "node scrape.js auth",
+    "crawl": "node scrape.js crawl",
+    "serve": "node scrape.js serve",
+    "status": "node scrape.js status",
+    "test": "echo \"Tests not yet implemented\" && exit 0"
+  },
+  "keywords": [
+    "scraper",
+    "web-crawler",
+    "offline-browsing",
+    "playwright"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "playwright": "^1.40.1",
+    "winston": "^3.11.0",
+    "p-queue": "^8.0.1",
+    "cheerio": "^1.0.0-rc.12",
+    "mime-types": "^2.1.35",
+    "robots-parser": "^3.0.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

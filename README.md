@@ -1,6 +1,6 @@
 # Revision Village Website Scraper
 
-A production-ready Node.js application for creating offline mirrors of authenticated websites. Specifically designed for sites using Google OAuth authentication.
+A production-ready Node.js application for creating offline mirrors of authenticated websites. Specifically designed for Revision Village with email/password authentication.
 
 ## ⚠️ IMPORTANT LEGAL NOTICE
 
@@ -16,15 +16,16 @@ This software is provided for **authorized use only**. Before using this tool, y
 
 ### What This Tool Does NOT Do
 
-- ❌ Does NOT automate Google credential entry
 - ❌ Does NOT bypass or circumvent any security measures
 - ❌ Does NOT solve CAPTCHAs or other verification challenges
 - ❌ Does NOT attempt to hack or exploit any vulnerabilities
+- ❌ Does NOT store your password (only session cookies)
 
 ### What This Tool DOES
 
-- ✅ Requires **manual login** in a visible browser window
-- ✅ Saves session cookies after you log in manually
+- ✅ Prompts for your **email and password** to log in automatically
+- ✅ Uses automated form filling for login
+- ✅ Saves session cookies after successful authentication
 - ✅ Respects rate limiting and robots.txt (by default)
 - ✅ Creates a proper offline mirror with rewritten links
 
@@ -32,7 +33,7 @@ This software is provided for **authorized use only**. Before using this tool, y
 
 ## 🎯 Features
 
-- **Manual Authentication Flow**: Opens a headful browser for you to complete Google sign-in manually
+- **Email/Password Authentication**: Prompts for your credentials and logs in automatically
 - **Session Management**: Saves and reuses authentication cookies across crawl sessions
 - **Session Validation**: Checks if saved cookies are still valid
 - **Smart Crawling**: Respects robots.txt, rate limiting, and same-origin policy
@@ -82,7 +83,7 @@ npx playwright install chromium
 
 ## 📖 Usage
 
-### Step 1: Authenticate (Manual Google Login)
+### Step 1: Authenticate with Email/Password
 
 Before crawling, you need to authenticate with the website:
 
@@ -92,17 +93,18 @@ node scrape.js auth
 
 **What happens:**
 1. The tool displays a legal notice and asks for confirmation
-2. A browser window opens (this is intentional - not a bug!)
-3. You manually complete the Google sign-in process
-4. Complete any 2FA or verification steps
-5. Press Enter in the terminal when done
-6. The tool saves your session cookies
+2. You'll be prompted to enter your Revision Village email and password
+3. A browser window opens and automatically fills in your credentials
+4. The tool submits the login form
+5. If 2FA is required, you may need to complete it manually in the browser
+6. The tool saves your session cookies (NOT your password)
 
 **Important Notes:**
-- The browser window MUST be visible (not headless) for manual login
-- Take your time - there's no rush
-- Complete all verification steps as you normally would
-- Do not close the browser until the process completes
+- Your password is used only for login and is never stored
+- Only session cookies are saved to disk
+- The browser window opens so you can see the login process
+- If 2FA is enabled, complete it manually in the browser
+- Watch the browser window to ensure login succeeds
 
 ### Step 2: Crawl the Website
 
@@ -247,17 +249,19 @@ output/
 ### Authentication Flow
 
 1. **User Confirmation**: Displays legal notice and requires explicit permission confirmation
-2. **Headful Browser Launch**: Opens a visible Chromium browser (NOT headless)
-3. **Manual Login**: User completes Google OAuth flow manually (including 2FA)
-4. **Cookie Capture**: After successful login, saves session cookies and browser storage
-5. **Validation**: Verifies authentication by checking page content
-6. **Secure Storage**: Saves cookies to `cookies.json` with restrictive file permissions
+2. **Credential Prompt**: Prompts for your Revision Village email and password
+3. **Browser Launch**: Opens a visible Chromium browser with persistent profile
+4. **Automated Login**: Automatically fills in credentials and submits login form
+5. **2FA Handling**: If 2FA is required, user completes it manually in the browser
+6. **Cookie Capture**: After successful login, saves session cookies and browser storage
+7. **Validation**: Verifies authentication by checking page content
+8. **Secure Storage**: Saves cookies to `cookies.json` with restrictive file permissions
 
-**Critical Security Note**: This tool NEVER:
-- Accesses or stores your Google password
-- Automates credential entry
-- Bypasses any security measures
-- Uses any form of credential stuffing or brute force
+**Critical Security Note**:
+- Your password is used only for the login process and is NEVER stored
+- Only session cookies are saved to disk
+- The browser uses anti-detection techniques to appear as a normal browser
+- 2FA must be completed manually if enabled on your account
 
 ### Crawling Flow
 

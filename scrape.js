@@ -79,6 +79,8 @@ program
   .option('--exclude <patterns>', 'Exclude URLs matching these patterns (comma-separated)', '')
   .option('--no-respect-robots', 'Ignore robots.txt (use with caution)')
   .option('--wait-for <selector>', 'Wait for this CSS selector before saving page')
+  .option('--no-sitemap', 'Disable sitemap usage (crawl by following links instead)')
+  .option('--sitemap-url <url>', 'Custom sitemap URL', '')
   .option('--force', 'Force crawl even without explicit confirmation')
   .action(async (options) => {
     try {
@@ -126,7 +128,9 @@ program
         respectRobots: options.respectRobots,
         includePatterns,
         excludePatterns,
-        waitForSelector: options.waitFor
+        waitForSelector: options.waitFor,
+        useSitemap: options.sitemap !== false, // Enabled by default
+        sitemapUrl: options.sitemapUrl || undefined
       });
 
       // Legal warning

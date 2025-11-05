@@ -36,6 +36,7 @@ This software is provided for **authorized use only**. Before using this tool, y
 - **Email/Password Authentication**: Prompts for your credentials and logs in automatically
 - **Session Management**: Saves and reuses authentication cookies across crawl sessions
 - **Session Validation**: Checks if saved cookies are still valid
+- **Sitemap Support**: Automatically loads URLs from sitemap.xml for efficient crawling
 - **Smart Crawling**: Respects robots.txt, rate limiting, and same-origin policy
 - **Asset Download**: Downloads images, CSS, JavaScript, fonts, and videos
 - **Link Rewriting**: Rewrites all links to work offline
@@ -136,8 +137,25 @@ node scrape.js crawl \
 - `--exclude <patterns>` - Exclude matching URLs (comma-separated glob patterns)
 - `--wait-for <selector>` - Wait for CSS selector before saving
 - `--no-respect-robots` - Ignore robots.txt (use with explicit permission)
+- `--no-sitemap` - Disable sitemap usage (crawl by following links instead)
+- `--sitemap-url <url>` - Custom sitemap URL (default: `/sitemap.xml`)
 
 **Examples:**
+
+Use sitemap for efficient crawling (default behavior):
+```bash
+node scrape.js crawl --max-pages 500
+```
+
+Use custom sitemap URL:
+```bash
+node scrape.js crawl --sitemap-url "https://www.revisionvillage.com/sitemap-0.xml"
+```
+
+Disable sitemap and crawl by following links:
+```bash
+node scrape.js crawl --no-sitemap --start /
+```
 
 Crawl specific sections only:
 ```bash
